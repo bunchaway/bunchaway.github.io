@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="result-style.css">
+</head>
+<body>
+    
+    <div class="result-container">
+        <h1 class="result-title">Kết quả Quiz 🎉</h1>
+        
+        <div id="summary" class="summary-card">
+            <h2 class="summary-score-title">Điểm của bạn:</h2>
+            <p id="final-score" class="final-score"></p>
+        </div>
+        
+        <div id="incorrect-answers-section" class="incorrect-answers-card">
+            <h3 class="incorrect-answers-title">Các câu trả lời sai:</h3>
+            <ul id="incorrect-answers-list" class="incorrect-answers-list">
+                </ul>
+            <p id="no-mistakes-message" class="no-mistakes-message hidden-element">Đúng hết bạn ơi! Khỏi chê ✨</p>
+        </div>
+        
+        <div class="back-to-home-btn-container">
+            <a href="index.html" class="btn btn-primary">
+                Trở về Trang chủ
+            </a>
+        </div>
+    </div>
+    
+    <script src="result.js"></script>
+</body>
+</html>
