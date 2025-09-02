@@ -98,7 +98,6 @@ nav {
     margin: 0 15px;
     color: black;
     font-size: 16px;
-    font-weight: bold;
     text-transform: uppercase;
 }
 
@@ -147,4 +146,350 @@ nav {
     color: #666;
     font-size: 14px;
     margin-bottom: 5px;
+}
+
+/* --- Bố cục lưới cho các tác phẩm --- */
+.book-grid {
+    display: grid;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    gap: 25px;
+    /* Khoảng cách giữa các thẻ */
+
+    /* Mặc định cho màn hình lớn: 4 cột */
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* --- Kiểu cho mỗi thẻ tác phẩm --- */
+.book-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.book-card .book-cover {
+    width: 100%;
+    height: 300px;
+    /* Chiều cao cố định cho ảnh bìa */
+    object-fit: cover;
+    /* Đảm bảo ảnh luôn vừa vặn */
+    background-color: #eee;
+}
+
+.book-card .book-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info .title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.book-info .author {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0 15px 0;
+}
+
+/* --- Kiểu nút "Xem thêm" --- */
+.view-more-button {
+    background-color: #007bff;
+    /* Màu xanh dương (thay vì xanh lá để hiện đại hơn) */
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: auto;
+    /* Đẩy nút xuống dưới cùng của thẻ */
+}
+
+.view-more-button:hover {
+    background-color: #0056b3;
+    /* Màu xanh đậm hơn khi di chuột */
+}
+
+/* Book details for details.html */
+.book-details-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Vocabulary section */
+#vocabulary-section {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#vocabulary-section h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.vocabulary-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vocab-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.vocab-term {
+    flex: 1;
+    font-weight: bold;
+    color: #333;
+}
+
+.vocab-definition {
+    flex: 2;
+    color: #666;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination button.active {
+    background-color: #0056b3;
+    font-weight: bold;
+}
+
+
+.page-input-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-input {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.go-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.go-button:hover {
+    background-color: #218838;
+}
+
+/* --- CSS đáp ứng cho các kích cỡ màn hình khác nhau --- */
+
+/* Tablet (iPad): 2 cột */
+@media (max-width: 992px) {
+    .book-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-info .title {
+        font-size: 1.1rem;
+    }
+
+    .book-info .author {
+        font-size: 0.85rem;
+    }
+
+    .view-more-button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Book details for details.html */
+    .book-details-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    /* Vocabulary section */
+    #vocabulary-section {
+        padding: 15px;
+    }
+
+    #vocabulary-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .vocab-box {
+        flex-direction: column;
+        gap: 5px;
+        padding: 8px;
+    }
+
+    .vocab-term,
+    .vocab-definition {
+        flex: none;
+        font-size: 0.9rem;
+    }
+
+    .vocab-term {
+        font-weight: bold;
+    }
+
+    .vocab-definition {
+        font-style: italic;
+    }
+
+    /* Pagination */
+    .pagination {
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .pagination button {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .pagination span {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .page-input {
+        width: 50px;
+        padding: 5px;
+        font-size: 0.85rem;
+    }
+
+    .go-button {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Điện thoại: 1 cột */
+@media (max-width: 576px) {
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-card .book-cover {
+        height: 200px;
+        /* Tăng chiều cao ảnh trên điện thoại */
+    }
+
+    .book-info .title {
+        font-size: 1rem;
+    }
+
+    .book-info .author {
+        font-size: 0.8rem;
+    }
+
+    .view-more-button {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+
+    /* Book details for details.html */
+    .book-details-container {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    /* Vocabulary section */
+    #vocabulary-section {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #vocabulary-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .vocab-box {
+        padding: 6px;
+    }
+
+    .vocab-term,
+    .vocab-definition {
+        font-size: 1rem;
+    }
+
+    /* Pagination */
+    .pagination {
+        gap: 3px;
+    }
+
+    .pagination button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
+    .pagination span {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
+    .page-input {
+        width: 45px;
+        padding: 4px;
+        font-size: 0.8rem;
+    }
+
+    .go-button {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
 }

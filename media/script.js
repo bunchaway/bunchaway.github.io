@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookContainer = document.getElementById('book-container');
 
     // Dùng hàm fetch để đọc nội dung từ tệp books.txt
-    fetch('books.txt')
+    fetch('./list.txt')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Không thể tải file books.txt!');
+                throw new Error('Không thể tải tệp list.txt!');
             }
             return response.text();
         })
@@ -23,23 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const parts = bookLine.split(' - ');
                 const title = parts[0].trim();
                 const author = parts[1].trim();
-
-                // Tạo URL cho ảnh bìa theo định dạng API
-                // encodeURIComponent để xử lý các ký tự đặc biệt trong tên sách/tác giả
                 const bookIdentifier = encodeURIComponent(`${title} - ${author}`);
-                const coverUrl = `/api/bookcover/${bookIdentifier}.jpg`;
-                
+
+                const coverUrl = `https://bunchaway.github.io/api/bia-sach/${bookIdentifier}.jpg`;
+                const filePath = `https://bunchaway.github.io/api/decks/book/${bookIdentifier}.txt`; // Giả sử tệp từ vựng nằm trong thư mục vocabulary
+
                 // Tạo một phần tử div mới cho thẻ sách
                 const card = document.createElement('div');
                 card.className = 'book-card';
 
                 // Thêm nội dung HTML vào thẻ
                 card.innerHTML = `
-                    <img src="${coverUrl}" alt="Bìa sách ${title}" class="book-cover" onerror="this.src='https://via.placeholder.com/300x400.png?text=Image+Not+Found'">
+                    <img src="${coverUrl}" alt="Bìa sách ${title}" class="book-cover">
                     <div class="book-info">
                         <h2 class="title">${title}</h2>
                         <p class="author">${author}</p>
-                        <button class="view-more-button">Xem thêm</button>
+                        <button class="view-more-button" id="viewMoreBtn" onclick="window.location.href='../details.html?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&file=${encodeURIComponent(filePath)}';">Vocabulary List</button>
                     </div>
                 `;
 
