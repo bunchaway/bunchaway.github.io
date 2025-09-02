@@ -1,53 +1,70 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cày Quiz</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decks - Bunchaway</title>
+    <link rel="stylesheet" href="decks.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="left-links">
+        <a class="links selected logo" href="/">bunchaway</a>
+        <a class="links" href="/decks/">Decks</a>
+      </div>
+      <div class="right-links">
+        <a
+          class="links"
+          target="_blank"
+          href="https://daihocmo.github.io/learn-vietnamese/"
+          >Guide</a
+        >
+        <a
+          class="links"
+          target="_blank"
+          href="https://thu-tram.github.io/betobungo/"
+          >Grammar</a
+        >
+      </div>
+    </nav>
 
     <div id="home-screen" class="container">
-        <h1 class="main-title">Cày Quiz</h1>
-        <div id="flashcard-list" class="flashcard-list">
-            </div>
-        <label for="csv-file" class="btn btn-primary">
-            Thêm bộ thẻ mới (.csv)
-        </label>
-        <input type="file" id="csv-file" class="hidden-input" accept=".csv">
+      <div id="flashcard-list" class="flashcard-list"></div>
     </div>
 
     <div id="setup-screen" class="hidden-screen container">
-        <h2 class="setup-title">Chuẩn bị: <span id="current-deck-name" class="deck-name"></span></h2>
-        <input type="number" id="quiz-count-input" class="input-field" placeholder="Ví dụ: 20">
-        <p id="max-questions-info" class="info-text"></p>
-        <button id="start-button" class="btn btn-success">
-            Bắt đầu
-        </button>
-        <button id="back-to-home" class="btn btn-text">Quay lại</button>
+      <h2 class="setup-title">
+        Chuẩn bị: <span id="current-deck-name" class="deck-name"></span>
+      </h2>
+      <input
+        type="number"
+        id="quiz-count-input"
+        class="input-field"
+        placeholder="Ví dụ: 20"
+      />
+      <p id="max-questions-info" class="info-text"></p>
+      <button id="start-button" class="btn btn-success">Bắt đầu</button>
+      <button id="back-to-home" class="btn btn-text">Quay lại</button>
     </div>
 
     <div id="quiz-screen" class="hidden-screen container">
-        <div class="quiz-header">
-            <div id="quiz-progress" class="quiz-progress"></div>
-            <div id="score-display" class="score-display"></div>
-        </div>
-        
-        <div class="quiz-card">
-            <h3 id="question-term" class="question-term"></h3>
-            <div id="answers-container" class="answers-grid">
-                </div>
-            <p id="feedback-message" class="feedback-message"></p>
-        </div>
+      <div class="quiz-header">
+        <div id="quiz-progress" class="quiz-progress"></div>
+        <div id="score-display" class="score-display"></div>
+      </div>
 
-        <div class="quiz-footer">
-            <button id="exit-quiz" class="btn btn-danger">
-                Ngừng làm bài
-            </button>
-        </div>
+      <div class="quiz-card">
+        <h3 id="question-term" class="question-term"></h3>
+        <div id="answers-container" class="answers-grid"></div>
+        <p id="feedback-message" class="feedback-message"></p>
+      </div>
+
+      <div class="quiz-footer">
+        <button id="exit-quiz" class="btn btn-danger">Ngừng làm bài</button>
+      </div>
     </div>
-    
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

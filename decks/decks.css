@@ -1,7 +1,7 @@
 /* style.css */
 
 /* Cài đặt cơ bản */
-body {
+/* body {
     font-family: Arial, sans-serif;
     font-size: 1rem;
     background-color: #f3f4f6;
@@ -23,7 +23,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-}
+} */
 
 /* Các màn hình chính */
 .hidden-screen {
@@ -229,6 +229,7 @@ body {
 
 .answers-grid {
     display: grid;
+    font-size: 1.5rem;
     grid-template-columns: 1fr;
     gap: 1rem;
 }
@@ -237,6 +238,7 @@ body {
     background-color: #e5e7eb;
     color: #1f2937;
     font-weight: 600;
+    font-size: 1rem;
     padding: 1rem 1.5rem;
     border-radius: 0.5rem;
     text-align: left;

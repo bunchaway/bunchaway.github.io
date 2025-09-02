@@ -43,12 +43,10 @@ nav {
 
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
-    /* background-color: #fff; */
     padding: 20px;
     border-radius: 8px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* h1 {
@@ -220,7 +218,7 @@ nav {
 }
 
 /* Book details for details.html */
-.book-details-container {
+.details-container {
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
@@ -303,7 +301,6 @@ nav {
     font-weight: bold;
 }
 
-
 .page-input-container {
     display: flex;
     align-items: center;
@@ -352,10 +349,11 @@ nav {
     .view-more-button {
         padding: 6px 12px;
         font-size: 0.85rem;
+        margin-bottom: 10px;
     }
 
     /* Book details for details.html */
-    .book-details-container {
+    .details-container {
         flex-direction: column;
         align-items: center;
         padding: 15px;
@@ -376,8 +374,7 @@ nav {
         padding: 8px;
     }
 
-    .vocab-term,
-    .vocab-definition {
+    .vocab-term, .vocab-definition {
         flex: none;
         font-size: 0.9rem;
     }
@@ -443,7 +440,7 @@ nav {
     }
 
     /* Book details for details.html */
-    .book-details-container {
+    .details-container {
         margin: 10px;
         padding: 10px;
     }
@@ -464,7 +461,7 @@ nav {
 
     .vocab-term,
     .vocab-definition {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     /* Pagination */

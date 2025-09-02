@@ -25,8 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const author = parts[1].trim();
                 const bookIdentifier = encodeURIComponent(`${title} - ${author}`);
 
+                // Xác định typeOfMedia dựa trên đường dẫn
+                const path = window.location.pathname;
+                console.log(path);
+                let typeOfMedia;
+                if (path.includes('sach')) {
+                    typeOfMedia = 'book';
+                } else if (path.includes('tieu-thuyet')) {
+                    typeOfMedia = 'novel';
+                } else if (path.includes('phim-anh')) {
+                    typeOfMedia = 'movie';
+                } else {
+                    console.error('Không xác định được typeOfMedia từ đường dẫn:', path);
+                    bookContainer.innerHTML = `<p style="text-align: center; color: red;">Không thể xác định loại media. Vui lòng kiểm tra đường dẫn.</p>`;
+                    return;
+                }
+
                 const coverUrl = `https://bunchaway.github.io/api/bia-sach/${bookIdentifier}.jpg`;
-                const filePath = `https://bunchaway.github.io/api/decks/book/${bookIdentifier}.txt`; // Giả sử tệp từ vựng nằm trong thư mục vocabulary
+                const filePath = `https://bunchaway.github.io/api/decks/${typeOfMedia}/${bookIdentifier}.txt`; // Giả sử tệp từ vựng nằm trong thư mục vocabulary
 
                 // Tạo một phần tử div mới cho thẻ sách
                 const card = document.createElement('div');
@@ -34,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Thêm nội dung HTML vào thẻ
                 card.innerHTML = `
-                    <img src="${coverUrl}" alt="Bìa sách ${title}" class="book-cover">
+                    <img src="${coverUrl}" alt="Bìa sách ${title}" class="book-cover" onerror="this.onerror=null; this.src='/cover.png';">
                     <div class="book-info">
                         <h2 class="title">${title}</h2>
                         <p class="author">${author}</p>

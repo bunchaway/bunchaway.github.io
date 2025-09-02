@@ -2,7 +2,6 @@ const homeScreen = document.getElementById('home-screen');
 const setupScreen = document.getElementById('setup-screen');
 const quizScreen = document.getElementById('quiz-screen');
 
-const csvFile = document.getElementById('csv-file');
 const flashcardList = document.getElementById('flashcard-list');
 const quizCountInput = document.getElementById('quiz-count-input');
 const startButton = document.getElementById('start-button');
@@ -25,25 +24,6 @@ let score = 0;
 let totalQuestions = 0;
 let wrongAnswers = []; 
 let hasAnsweredCurrentQuestion = false;
-
-// Xử lý khi người dùng chọn tệp
-csvFile.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const csvContent = e.target.result;
-            const fileName = file.name.replace('.csv', '');
-            
-            allFlashcardDecks[fileName] = parseCsvData(csvContent);
-            localStorage.setItem('allFlashcardDecks', JSON.stringify(allFlashcardDecks));
-            
-            displayFlashcardDecks();
-            event.target.value = '';
-        };
-        reader.readAsText(file);
-    }
-});
 
 // Xử lý khi bấm nút "Bắt đầu"
 startButton.addEventListener('click', () => {
@@ -120,16 +100,16 @@ function displayFlashcardDecks() {
 function deleteDeck(deckName) {
     if (confirm(`Bạn có chắc chắn muốn xóa bộ thẻ "${deckName}" không?`)) {
         delete allFlashcardDecks[deckName];
-        localStorage.setItem('allFlashcardDecks', JSON.stringify(allFlashcardDecks));
+        localStorage.setItem('bunchawayDecks', JSON.stringify(allFlashcardDecks));
         displayFlashcardDecks();
     }
 }
 
 // Phân tích dữ liệu từ tệp CSV
-function parseCsvData(csv) {
-    const lines = csv.trim().split('\n');
+function parseCsvData(txt) {
+    const lines = txt.trim().split('\n');
     return lines.map(line => {
-        const parts = line.split(',');
+        const parts = line.split(' : ');
         const term = parts[0].trim();
         const definition = parts.slice(1).join(',').trim();
         return { term, definition };
@@ -217,7 +197,7 @@ function shuffleArray(array) {
 
 // Tải dữ liệu từ localStorage khi trang được load
 window.addEventListener('load', () => {
-    const storedDecks = localStorage.getItem('allFlashcardDecks');
+    const storedDecks = localStorage.getItem('bunchawayDecks');
     if (storedDecks) {
         allFlashcardDecks = JSON.parse(storedDecks);
     }

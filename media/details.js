@@ -11,6 +11,82 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    const downloadButton = document.getElementById('download-deck');
+    downloadButton.addEventListener('click', () => {
+        if (file) {
+            // Tạo một liên kết tạm thời để tải tệp
+            const link = document.createElement('a');
+            link.href = file;
+            link.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            console.error('Không có tệp để tải xuống.');
+        }
+    });
+
+
+    // Thêm sự kiện cho nút "Add this deck" với kiểm tra trùng lặp
+    const addButton = document.getElementById('add-deck');
+    addButton.addEventListener('click', () => {
+        if (file) {
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Không thể tải file từ vựng để thêm vào deck!');
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    const lines = text.trim().split('\n').filter(line => line.trim() !== '');
+                    const newDeckData = lines.map(line => {
+                        const parts = line.split(' : ');
+                        return {
+                            term: parts[0].trim(),
+                            definition: parts.slice(1).join(' : ').trim()
+                        };
+                    });
+
+                    // Lấy danh sách deck hiện tại từ localStorage
+                    let allFlashcardDecks = JSON.parse(localStorage.getItem('bunchawayDecks') || '{}');
+
+                    // Tạo tập hợp các cặp term-definition đã tồn tại
+                    const existingPairs = new Set();
+                    for (const deckName in allFlashcardDecks) {
+                        allFlashcardDecks[deckName].forEach(item => {
+                            existingPairs.add(`${item.term}-${item.definition}`);
+                        });
+                    }
+
+                    // Lọc các cặp mới không trùng lặp
+                    const uniqueDeckData = newDeckData.filter(item => {
+                        const pair = `${item.term}-${item.definition}`;
+                        return !existingPairs.has(pair);
+                    });
+
+                    // Nếu có cặp mới, thêm vào deck hiện tại
+                    if (uniqueDeckData.length > 0) {
+                        const fileName = `${title}`;
+                        if (!allFlashcardDecks[fileName]) {
+                            allFlashcardDecks[fileName] = [];
+                        }
+                        allFlashcardDecks[fileName] = [...allFlashcardDecks[fileName], ...uniqueDeckData];
+                        localStorage.setItem('bunchawayDecks', JSON.stringify(allFlashcardDecks));
+                    }
+
+                    // Chuyển hướng đến /decks/
+                    window.location.href = '/decks/';
+                })
+                .catch(error => {
+                    console.error('Lỗi khi thêm deck:', error);
+                });
+        } else {
+            console.error('Không có tệp để thêm vào deck.');
+        }
+    });
+
+
     // Cập nhật tiêu đề và tác giả
     document.getElementById('book-title').textContent = title;
     document.getElementById('book-author').textContent = `Author: ${author}`;
