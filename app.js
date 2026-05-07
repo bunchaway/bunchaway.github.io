@@ -3,28 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.getElementById('searchBtn');
     const resultsDiv = document.getElementById('results');
 
-    // Gắn sự kiện click cho nút tìm kiếm
-    searchBtn.addEventListener('click', () => {
+    const handleSearch = () => {
         const query = searchInput.value.trim();
         if (query.length > 0) {
-            // Chuyển hướng đến trang mới với query string
-            window.location.href = `/tudien/tim-kiem.html?q=${encodeURIComponent(query)}`;
-        } else {
-            resultsDiv.innerHTML = '<p>Vui lòng nhập từ cần tra cứu.</p>';
+            // Redirect to the main dictionary page (root) with the query
+            window.location.href = `/?q=${encodeURIComponent(query)}`;
+        } else if (resultsDiv) {
+            resultsDiv.innerHTML = '<p style="text-align: center; opacity: 0.6; margin-top: 0.5rem;">Please enter a Vietnamese word or phrase to search.</p>';
         }
-    });
+    };
 
-    // Gắn sự kiện "Enter" cho ô nhập liệu
-    searchInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query.length > 0) {
-                // Chuyển hướng đến trang mới với query string
-                window.location.href = `/tudien/tim-kiem.html?q=${encodeURIComponent(query)}`;
-            } else {
-                resultsDiv.innerHTML = '<p>Vui lòng nhập từ cần tra cứu.</p>';
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', handleSearch);
+        searchInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                handleSearch();
             }
-        }
-    });
-
+        });
+    }
 });

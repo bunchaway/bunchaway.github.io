@@ -1,65 +1,104 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="left-links">
-        <a class="links selected logo" href="/">bunchaway</a>
-        <a class="links" href="/decks/">Decks</a>
-      </div>
-      <div class="right-links">
-        <a
-          class="links"
-          target="_blank"
-          href="https://daihocmo.github.io/learn-vietnamese/"
-          >Guide</a
-        >
-        <a
-          class="links"
-          target="_blank"
-          href="https://thu-tram.github.io/betobungo/"
-          >Grammar</a
-        >
-      </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Bunchaway - Vietnamese Dictionary with complete definitions, examples, and pronunciation in a refined space.">
+    <title>Bunchaway - Vietnamese Dictionary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <div class="navbar-brand">
+                <a href="/" class="logo">Bunchaway</a>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="/" class="nav-link active"></a></li>
+                <li><a href="https://daihocmo.github.io/learn-vietnamese/" target="_blank" class="nav-link">viet
+                        guide</a></li>
+                <li><a href="/about/" class="nav-link">about us</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <div class="container">
-      <div class="search-box">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Nhập từ cần tra cứu..."
-        />
-        <button id="searchBtn">Search</button>
-      </div>
+    <!-- Main Content -->
+    <main class="dictionary-main">
+        <div class="container">
+            <!-- Search Header -->
+            <div class="search-header">
+                <h1 style="font-size: 2.5rem; margin-bottom: var(--spacing-sm);">Từ điển Tiếng Việt</h1>
+                <div class="search-wrapper" style="position: relative;">
+                    <div class="search-box" style="margin: 0 auto; max-width: 100%;">
+                        <input type="text" id="searchInput" placeholder="Enter a Vietnamese word or phrase..."
+                            autocomplete="off" aria-label="Search for Vietnamese words or phrases">
+                        <button id="searchBtn">Search</button>
+                    </div>
+                    <div id="suggestions" class="suggestions-list"
+                        style="position: absolute; top: 100%; left: 0; right: auto; width: 100%; background: var(--bg-secondary); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-md) var(--radius-md); max-height: 300px; overflow-y: auto; display: none; z-index: 100; box-shadow: var(--shadow-medium); text-align: left;">
+                    </div>
+                </div>
 
-      <div class="tabs">
-        <a href="/media/phim-anh/" class="tab-link">Movies</a>
-        <a href="/media/tieu-thuyet/" class="tab-link">Novels</a>
-        <a href="/media/sach/" class="tab-link">Books</a>
-      </div>
+                <!-- Filters -->
+                <div class="filters">
+                    <button class="filter-btn active" data-type="all">All</button>
+                    <button class="filter-btn" data-type="mono">Monolingual</button>
+                    <button class="filter-btn" data-type="bilingual">Bilingual</button>
+                </div>
+            </div>
 
-      <h2 id="what-is-bunchaway-">What is Bunchaway?</h2>
-      <h3 id="a-powerful-vietnamese-dictionary-and-learning-system">
-        A powerful Vietnamese dictionary and learning system (Inspired by
-        <a href="https://jpdb.io/">JPDB</a>, <i>inspired</i>, this will never be
-        as good as JPDB)
-      </h3>
-      <h4 id="interactive-vocabulary-quizzes">
-        Interactive Vocabulary Quizzes
-      </h4>
-      <p>Practice with curated word sets directly in your browser.</p>
-      <h4 id="anki">Anki</h4>
-      <p>Download vocabulary decks and import them into Anki (I'll write a guide on that later).</p>
-      <h4 id="no-installation-needed">No Installation Needed</h4>
-      <p>Learn anytime, anywhere — right from your browser (You don't have to sign in).</p>
-    </div>
+            <!-- Results Layout -->
+            <div class="results-layout">
+                <!-- Main Results Area -->
+                <div class="results-main">
+                    <div id="results" class="results-area">
+                        <!-- Initial State -->
+                        <div class="empty-state"
+                            style="text-align: center; padding: var(--spacing-xl) 0; opacity: 0.5;">
+                            <h3></h3>
+                            <p>Finding words with complete definitions and examples</p>
+                        </div>
+                    </div>
+                </div>
 
-    <script src="app.js"></script>
-  </body>
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- History Panel -->
+                    <section class="sidebar-panel">
+                        <h3 class="panel-title">History</h3>
+                        <div id="historyList" class="panel-list">
+                            <p class="panel-empty">No data available</p>
+                        </div>
+                    </section>
+
+                    <!-- Favorites Panel -->
+                    <section class="sidebar-panel">
+                        <h3 class="panel-title">Favorites</h3>
+                        <div id="favList" class="panel-list">
+                            <p class="panel-empty">No data available</p>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <script src="search.js"></script>
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
 </html>
